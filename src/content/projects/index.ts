@@ -6,6 +6,7 @@ export interface Project {
   tags: string[];
   link?: string;
   github?: string;
+  animation?: { asset: string; description: string };
   featured: boolean;
   year: number;
   category: "web" | "mobile" | "research" | "creative" | "tool";
@@ -14,6 +15,10 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "agentshield",
+    animation: {
+      asset: "agentshield",
+      description: "A branching checkpoint allows a read request, blocks a delete request, and logs the decision.",
+    },
     title: "AgentShield",
     shortDescription: "AI agent authorization and reliability platform.",
     description: "<p>Designed policy checks for tool execution using role-based access control and tenant isolation. In résumé-reported testing, AgentShield matched expected authorization decisions across 100 synthetic scenarios and recorded zero unauthorized executions across 20 live OCI Generative AI evaluations.</p>",
@@ -31,6 +36,10 @@ export const projects: Project[] = [
   },
   {
     slug: "log-tunnel",
+    animation: {
+      asset: "log-tunnel",
+      description: "A simulated payment timeout sends glowing error events down a wireframe tunnel as the queue count grows.",
+    },
     title: "Log Tunnel",
     shortDescription: "A real-time observability dashboard for a simulated e-commerce system.",
     description: "<p>Log Tunnel streams logs from a mock e-commerce API to a dashboard over WebSockets. The simulator lets visitors observe the effects of common service failures in a controlled environment. Docker Compose runs the log shipper, database, mock API, and dashboard together.</p>",
@@ -48,6 +57,10 @@ export const projects: Project[] = [
   },
   {
     slug: "personal-finance-forecaster",
+    animation: {
+      asset: "statement-reader",
+      description: "A bank statement resolves messy transaction names and reveals a spending breakdown.",
+    },
     title: "Personal Finance Forecaster",
     shortDescription: "An AI-assisted app for importing bank statements and understanding spending.",
     description: "<p>The app detects CSV schemas across 29 banking header aliases and categorizes transactions using rules, merchant matching, saved corrections, and a Gemini fallback. It also flags low-confidence matches for review and detects recurring expenses. The résumé reports adoption by more than 100 users.</p>",

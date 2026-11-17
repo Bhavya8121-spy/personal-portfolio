@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ProjectAnimation } from "@/components/project-animation";
 import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift } from "@/components/animations";
 import { projects, getFeaturedProjects, getAllProjects } from "@/content/projects";
@@ -37,12 +38,16 @@ export default function ProjectsPage() {
                   <ScrollReveal delay={index * 0.1}>
                     <Link href={`/projects/${project.slug}`} className="group block">
                       <HoverLift className="bg-card border border-border rounded-2xl overflow-hidden transition-all duration-300">
-                        <div className="aspect-video bg-muted relative overflow-hidden">
-                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent/10 to-transparent">
-                            <span className="font-display font-light text-6xl text-accent/30">{project.category === "mobile" ? "📱" : project.category === "web" ? "🌐" : project.category === "research" ? "🔬" : project.category === "creative" ? "🎨" : "🔧"}</span>
+                        {project.animation ? (
+                          <ProjectAnimation animation={project.animation} decorative />
+                        ) : (
+                          <div className="aspect-video bg-muted relative overflow-hidden">
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent/10 to-transparent">
+                              <span className="font-display font-light text-6xl text-accent/30">{project.category === "mobile" ? "📱" : project.category === "web" ? "🌐" : project.category === "research" ? "🔬" : project.category === "creative" ? "🎨" : "🔧"}</span>
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </div>
+                        )}
                         <div className="p-6">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
                             <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium">{project.year}</span>
@@ -78,11 +83,15 @@ export default function ProjectsPage() {
                   <ScrollReveal delay={index * 0.05}>
                     <Link href={`/projects/${project.slug}`} className="group block">
                       <HoverLift className="bg-card border border-border rounded-2xl overflow-hidden transition-all duration-300 h-full">
-                        <div className="aspect-video bg-muted relative overflow-hidden">
-                          <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent/10 to-transparent">
-                            <span className="font-display font-light text-5xl text-accent/30">{project.category === "mobile" ? "📱" : project.category === "web" ? "🌐" : project.category === "research" ? "🔬" : project.category === "creative" ? "🎨" : "🔧"}</span>
+                        {project.animation ? (
+                          <ProjectAnimation animation={project.animation} decorative />
+                        ) : (
+                          <div className="aspect-video bg-muted relative overflow-hidden">
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-accent/10 to-transparent">
+                              <span className="font-display font-light text-5xl text-accent/30">{project.category === "mobile" ? "📱" : project.category === "web" ? "🌐" : project.category === "research" ? "🔬" : project.category === "creative" ? "🎨" : "🔧"}</span>
+                            </div>
                           </div>
-                        </div>
+                        )}
                         <div className="p-5">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                             <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium">{project.year}</span>

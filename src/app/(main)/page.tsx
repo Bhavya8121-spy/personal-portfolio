@@ -2,6 +2,7 @@
 
 import { profile } from "@/content/profile";
 import Link from "next/link";
+import { ProjectAnimation } from "@/components/project-animation";
 import { getFeaturedProjects } from "@/content/projects";
 import { ArrowRight } from "lucide-react";
 import { ScrollReveal, StaggerContainer, StaggerItem, FadeIn, SlideUp } from "@/components/animations";
@@ -57,6 +58,9 @@ export default function HomePage() {
                     href={`/projects/${project.slug}`}
                     className="block h-full bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-[var(--accent)]/50 hover:shadow-xl hover:-translate-y-1 flex flex-col"
                   >
+                    {project.animation && (
+                      <ProjectAnimation animation={project.animation} className="mb-5 rounded-lg" decorative />
+                    )}
                     <div className="mb-4">
                       <span className="font-sans text-xs font-medium text-[var(--accent)] uppercase tracking-wider">
                         {project.year}

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { ProjectAnimation } from "@/components/project-animation";
 import { ArrowLeft, ExternalLink, GitBranch } from "lucide-react";
 import { projects, getProject } from "@/content/projects";
 
@@ -86,6 +87,10 @@ export default async function ProjectPage({ params }: Props) {
                 </a>
               )}
             </div>
+          )}
+
+          {project.animation && (
+            <ProjectAnimation animation={project.animation} className="mb-10 rounded-2xl border border-border" />
           )}
 
           <div className="prose prose-neutral max-w-none font-sans text-lg text-muted-foreground leading-relaxed">

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { profile } from "@/content/profile";
 import { ScrollReveal, StaggerContainer, StaggerItem, FadeIn, SlideUp } from "@/components/animations";
 import { StackedWaveforms } from "@/components/stacked-waveforms";
 
@@ -99,7 +98,7 @@ export default function AboutPage() {
               About
             </span>
             <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-[var(--foreground)] mt-4 text-balance">
-              About {profile.name}
+              About me
             </h1>
           </ScrollReveal>
 

@@ -19,7 +19,7 @@ export default function ProjectsPage() {
               Projects
             </span>
             <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-foreground mt-4 text-balance">
-              Projects by Bhavya Patel
+              My Projects
             </h1>
             <p className="font-sans text-lg text-muted-foreground mt-6 max-w-2xl leading-relaxed">
               Explore my work in AI reliability, observability, local document search, and data analysis.

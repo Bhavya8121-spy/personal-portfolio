@@ -11,3 +11,6 @@ Use Node.js 24. Install dependencies with `npm ci` and start the development ser
 GitHub Actions builds the static site from `main` and deploys the `out` directory to GitHub Pages. The workflow reads the repository’s Pages base path so that links and video assets work under the repository URL.
 
 Run `npm run build` to export the site locally.
+
+**Check it out**
+https://bhavya8121-spy.github.io/personal-portfolio/

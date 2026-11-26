@@ -10,10 +10,12 @@ import { CubeHeroAnimation } from "@/components/cube-hero-animation";
 import { StackedWaveforms } from "@/components/stacked-waveforms";
 import { InteractiveTerminal } from "@/components/interactive-terminal";
 import { ProjectSpecs } from "@/components/project-specs";
+import { IntroOverlay } from "@/components/intro-overlay";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-[var(--background)]">
+      <IntroOverlay />
       <CubeHeroAnimation />
 
       <div className="flex-1">
@@ -142,7 +144,7 @@ export default function HomePage() {
                         Read my story
                       </Link>
                       <Link href="/now" className="inline-flex items-center gap-2 px-7 py-2.5 border border-[var(--border)] rounded-full font-sans font-medium text-sm text-[var(--muted)] hover:text-[var(--foreground)] hover:border-[var(--foreground)] transition-all">
-                        What I'm up to
+                        What I&apos;m up to
                       </Link>
                     </SlideUp>
                   </StaggerItem>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight, Pause, Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { HERO_CUBE_ATTR, INTRO_DONE_EVENT, INTRO_REVEAL_EVENT, introWillPlay } from "@/lib/intro";
 
 const mediaPath = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/media`;
 const openingFrame = `${mediaPath}/chrome-cube-opening.jpg`;
@@ -21,6 +22,12 @@ export function CubeHeroAnimation() {
   const [userPaused, setUserPaused] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [revealed, setRevealed] = useState(false);
+  // When the cinematic intro covers the page, the hero is already in place
+  // underneath, holding its cube video on frame one. The intro ends on that
+  // same frame, glides into this slot, and the hero video takes over.
+  const [skipEntrance, setSkipEntrance] = useState(false);
+  // The hero copy waits under the intro and rises in as the intro hands off.
+  const [copyShown, setCopyShown] = useState(true);
 
   const { scrollYProgress } = useScroll({
     target: stage,
@@ -35,14 +42,26 @@ export function CubeHeroAnimation() {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => {
       setMotionEnabled(!preference.matches);
+      if (!preference.matches && introWillPlay()) {
+        setSkipEntrance(true);
+        setCopyShown(false);
+      }
       if (preference.matches) {
         setRevealed(false);
         setPlaying(false);
       }
     };
     update();
+    const reveal = () => setCopyShown(true);
+    const done = () => { setCopyShown(true); setRevealed(true); };
     preference.addEventListener("change", update);
-    return () => preference.removeEventListener("change", update);
+    window.addEventListener(INTRO_REVEAL_EVENT, reveal);
+    window.addEventListener(INTRO_DONE_EVENT, done);
+    return () => {
+      preference.removeEventListener("change", update);
+      window.removeEventListener(INTRO_REVEAL_EVENT, reveal);
+      window.removeEventListener(INTRO_DONE_EVENT, done);
+    };
   }, []);
 
   useEffect(() => {
@@ -94,8 +113,12 @@ export function CubeHeroAnimation() {
         <motion.div
           className="relative z-10"
           initial={false}
-          animate={motionEnabled ? { opacity: [0, 1], y: [14, 0] } : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: "easeOut" }}
+          animate={
+            skipEntrance
+              ? copyShown ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }
+              : motionEnabled ? { opacity: [0, 1], y: [14, 0] } : { opacity: 1, y: 0 }
+          }
+          transition={{ duration: skipEntrance ? 1.1 : 0.85, delay: skipEntrance && copyShown ? 0.15 : 0, ease: "easeOut" }}
         >
           <p className="mb-5 text-sm font-medium text-[#b7bdca]">Computer Science at Vanderbilt University</p>
           <h1 id="home-title" className="font-display text-[clamp(3.8rem,8.5vw,8rem)] font-medium leading-[0.92] tracking-[-0.075em]">
@@ -131,13 +154,14 @@ export function CubeHeroAnimation() {
             {motionEnabled ? (
               <motion.div
                 className="size-full"
-                initial={{ y: window.matchMedia("(min-width: 64rem)").matches ? "-100vh" : "-70px", opacity: 0 }}
+                initial={skipEntrance ? false : { y: window.matchMedia("(min-width: 64rem)").matches ? "-100vh" : "-70px", opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.75, ease: [0.2, 0.75, 0.2, 1] }}
-                onAnimationComplete={() => setRevealed(true)}
+                onAnimationComplete={() => { if (!skipEntrance) setRevealed(true); }}
               >
                 <video
                   ref={video}
+                  {...{ [HERO_CUBE_ATTR]: "" }}
                   src={`${mediaPath}/chrome-cube.mp4`}
                   poster={openingFrame}
                   width={1280}

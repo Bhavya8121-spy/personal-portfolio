@@ -2,6 +2,7 @@ import { profile } from "@/content/profile";
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./portfolio.css";
+import { introGateScript } from "@/lib/intro";
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
@@ -41,11 +42,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistMono.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Decide before first paint whether the home-page intro plays (see IntroOverlay). */}
+        <script dangerouslySetInnerHTML={{ __html: introGateScript }} />
+        <noscript>
+          <style>{`.intro-overlay{display:none!important}`}</style>
+        </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem, HoverLift } from "@/components/animations";
 import { projects, getFeaturedProjects, getAllProjects } from "@/content/projects";
 import { ArrowRight } from "lucide-react";
+import { ProjectSpecs } from "@/components/project-specs";
 
 export default function ProjectsPage() {
   const featuredProjects = getFeaturedProjects();
@@ -16,7 +17,7 @@ export default function ProjectsPage() {
       <section className="py-20 px-6 md:py-32">
         <div className="max-w-7xl mx-auto">
           <ScrollReveal className="mb-16">
-            <span className="font-sans text-sm font-medium text-accent uppercase tracking-wider">
+            <span className="font-mono text-xs font-medium text-accent uppercase tracking-[0.18em]">
               Projects
             </span>
             <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-foreground mt-4 text-balance">
@@ -49,16 +50,13 @@ export default function ProjectsPage() {
                           </div>
                         )}
                         <div className="p-6">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                            <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium">{project.year}</span>
-                            <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium capitalize">{project.category}</span>
-                          </div>
-                          <h3 className="font-display font-medium text-xl md:text-2xl text-foreground mb-3 group-hover:text-accent transition-colors">
+                          <h3 className="font-display font-medium text-xl md:text-2xl tracking-tight text-foreground mb-2 group-hover:text-accent transition-colors">
                             {project.title}
                           </h3>
-                          <p className="font-sans text-muted-foreground leading-relaxed mb-4 line-clamp-3">
+                          <p className="font-sans text-muted-foreground leading-relaxed mb-5 line-clamp-3">
                             {project.shortDescription}
                           </p>
+                          <ProjectSpecs project={project} maxStack={4} className="mb-5" />
                           <div className="flex items-center gap-2 text-accent font-medium text-sm group-hover:gap-3 transition-all">
                             <span>Read the story</span>
                             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -93,16 +91,13 @@ export default function ProjectsPage() {
                           </div>
                         )}
                         <div className="p-5">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                            <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium">{project.year}</span>
-                            <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium capitalize">{project.category}</span>
-                          </div>
-                          <h3 className="font-display font-medium text-lg md:text-xl text-foreground mb-2 group-hover:text-accent transition-colors line-clamp-1">
+                          <h3 className="font-display font-medium text-lg md:text-xl tracking-tight text-foreground mb-2 group-hover:text-accent transition-colors line-clamp-1">
                             {project.title}
                           </h3>
-                          <p className="font-sans text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                          <p className="font-sans text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
                             {project.shortDescription}
                           </p>
+                          <ProjectSpecs project={project} maxStack={2} />
                         </div>
                       </HoverLift>
                     </Link>

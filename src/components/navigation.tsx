@@ -3,7 +3,6 @@
 import { profile } from "@/content/profile";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const navigation = [
@@ -14,57 +13,47 @@ const navigation = [
 ];
 
 export function Navigation() {
-  const pathname = usePathname();
+  // The static export uses trailing slashes ("/projects/"), so normalize before comparing.
+  const pathname = usePathname().replace(/(.)\/$/, "$1");
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border" aria-label="Main navigation">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex h-16 items-center justify-between">
-          <Link
-            href="/"
-            className="font-display font-medium text-lg text-foreground hover:text-accent transition-colors duration-200"
-            aria-label="Go to homepage"
-          >
-            {profile.name}
-          </Link>
+    <nav className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6" aria-label="Main navigation">
+      <div className="mx-auto flex h-12 max-w-5xl items-center justify-between gap-4 rounded-2xl border border-white/[0.08] bg-[#0d0f14]/75 pl-4 pr-1.5 shadow-[0_1px_0_0_rgba(255,255,255,0.04)_inset,0_8px_32px_-12px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+        <Link
+          href="/"
+          className="font-display text-[15px] font-medium tracking-tight text-foreground transition-colors duration-200 hover:text-accent"
+          aria-label="Go to homepage"
+        >
+          {profile.name}
+        </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navigation.map((item) => (
+        <div className="hidden items-center gap-1 md:flex">
+          {navigation.map((item) => {
+            const active = pathname === item.href;
+            return (
               <Link
                 key={item.name}
                 href={item.href}
+                aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative font-sans text-sm font-medium transition-colors duration-200",
-                  pathname === item.href
-                    ? "text-foreground"
+                  "rounded-lg px-3 py-1.5 font-sans text-[13px] font-medium transition-colors duration-200",
+                  active
+                    ? "bg-white/[0.06] text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {item.name}
-                <AnimatePresence mode="wait">
-                  {pathname === item.href && (
-                    <motion.div
-                      initial={{ width: 0, opacity: 0 }}
-                      animate={{ width: "100%", opacity: 1 }}
-                      exit={{ width: 0, opacity: 0 }}
-                      transition={{ duration: 0.2, ease: "easeOut" }}
-                      className="absolute bottom-[-4px] left-0 h-0.5 bg-accent rounded-full"
-                    />
-                  )}
-                </AnimatePresence>
               </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-4">
-            <Link
-              href="/contact"
-              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-accent border border-accent rounded-full hover:bg-accent hover:text-accent-foreground transition-all duration-200"
-            >
-              Get in touch
-            </Link>
-          </div>
+            );
+          })}
         </div>
+
+        <Link
+          href="/contact"
+          className="inline-flex h-9 items-center rounded-xl bg-[#f2f3f6] px-4 text-[13px] font-semibold text-[#07080a] shadow-[0_1px_0_0_rgba(255,255,255,0.6)_inset] transition-colors duration-200 hover:bg-white"
+        >
+          Get in touch
+        </Link>
       </div>
     </nav>
   );

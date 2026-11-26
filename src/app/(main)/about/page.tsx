@@ -44,7 +44,7 @@ export default function AboutPage() {
               <StaggerContainer staggerDelay={0.1}>
                 <StaggerItem delay={0}>
                   <FadeIn delay={0.1} className="mb-4">
-                    <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+                    <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
                       02 / Exploration
                     </span>
                   </FadeIn>
@@ -59,17 +59,10 @@ export default function AboutPage() {
                 </StaggerItem>
 
                 <StaggerItem delay={2}>
-                  <SlideUp delay={0.3} distance={16} className="mb-8 max-w-lg">
-                    <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
-                      I build software that helps people make sense of complex systems and data.
-                    </p>
-                  </SlideUp>
-                </StaggerItem>
-
-                <StaggerItem delay={3}>
-                  <SlideUp delay={0.4} distance={16} className="mb-8 max-w-lg">
-                    <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
-                      My project work spans AI reliability, real-time observability, and local document retrieval.
+                  <SlideUp delay={0.3} distance={16} className="mb-8 max-w-xl">
+                    <p className="font-sans text-lg md:text-xl leading-relaxed tracking-tight text-pretty">
+                      <span className="text-[var(--foreground)]">I build software that helps people make sense of complex systems and data.</span>{" "}
+                      <span className="text-[#8a91a0]">My project work spans AI reliability, real-time observability, and local document retrieval.</span>
                     </p>
                   </SlideUp>
                 </StaggerItem>
@@ -94,7 +87,7 @@ export default function AboutPage() {
       <section className="py-20 px-6 md:py-32">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal className="mb-16 text-center">
-            <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+            <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
               About
             </span>
             <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-[var(--foreground)] mt-4 text-balance">

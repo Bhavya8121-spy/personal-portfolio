@@ -54,7 +54,7 @@ export default function NowPage() {
       <section className="py-20 px-6 md:py-32">
         <div className="max-w-4xl mx-auto">
           <ScrollReveal className="mb-16">
-            <span className="font-sans text-sm font-medium text-accent uppercase tracking-wider">
+            <span className="font-mono text-xs font-medium text-accent uppercase tracking-[0.18em]">
               Now
             </span>
             <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-foreground mt-4 text-balance">

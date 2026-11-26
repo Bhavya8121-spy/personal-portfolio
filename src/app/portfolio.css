@@ -3,7 +3,7 @@
 
 :root {
   color-scheme: dark;
-  --background: #090B0F;
+  --background: #05090C;
   --foreground: #F2F3F6;
   --primary: var(--foreground);
   --primary-foreground: var(--background);
@@ -11,7 +11,7 @@
   --secondary-foreground: var(--foreground);
   --accent: #82AAFF;
   --accent-foreground: var(--background);
-  --card: #11151D;
+  --card: #0E1016;
   --card-foreground: var(--foreground);
   --muted: #20252F;
   --muted-foreground: #B7BDCA;

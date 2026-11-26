@@ -88,7 +88,7 @@ export function CubeHeroAnimation() {
   return (
     <section
       aria-labelledby="home-title"
-      className="relative isolate overflow-hidden bg-[#090B0F] text-[#f2f3f6]"
+      className="relative isolate overflow-hidden bg-[#05090C] text-[#f2f3f6]"
     >
       <div className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-[1440px] content-center items-center gap-8 px-6 pb-12 pt-14 md:px-12 lg:grid-cols-[55fr_45fr] lg:gap-0 lg:px-16 lg:py-20">
         <motion.div
@@ -108,7 +108,7 @@ export function CubeHeroAnimation() {
             My projects span agent security, real-time observability, and offline document search.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link href="/projects" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#f2f3f6] px-5 text-sm font-semibold text-[#090B0F] hover:bg-white">
+            <Link href="/projects" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#f2f3f6] px-5 text-sm font-semibold text-[#05090C] hover:bg-white">
               Explore My Work <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
             <Link href="/contact" className="inline-flex min-h-11 items-center rounded-full border border-[#454c5b] px-5 text-sm font-medium hover:border-[#b7bdca]">
@@ -119,6 +119,15 @@ export function CubeHeroAnimation() {
 
         <div ref={stage} className="relative mx-auto w-full max-w-2xl lg:max-w-none">
           <motion.div className="relative aspect-video" style={motionEnabled ? { y, opacity, scale, visibility } : undefined}>
+            {/* Studio lighting: a cool halo behind the cube and a pool of light on the floor beneath it */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 z-10 h-[85%] w-[70%] mix-blend-screen -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(130,170,255,0.11),rgba(130,170,255,0.035)_55%,transparent)] blur-2xl"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-[6%] left-1/2 z-10 h-[22%] w-[62%] mix-blend-screen -translate-x-1/2 rounded-[100%] bg-[radial-gradient(closest-side,rgba(242,243,246,0.10),rgba(130,170,255,0.045)_60%,transparent)] blur-xl"
+            />
             {motionEnabled ? (
               <motion.div
                 className="size-full"
@@ -157,7 +166,7 @@ export function CubeHeroAnimation() {
                 type="button"
                 onClick={togglePlayback}
                 aria-label={playing ? "Pause cube animation" : "Play cube animation"}
-                className="absolute bottom-0 right-0 grid size-11 place-items-center rounded-full border border-[#454c5b] bg-[#090B0F] text-[#e0e3eb] hover:border-[#b7bdca]"
+                className="absolute bottom-0 right-0 z-20 grid size-11 place-items-center rounded-full border border-[#454c5b] bg-[#05090C] text-[#e0e3eb] hover:border-[#b7bdca]"
               >
                 {playing ? <Pause className="size-4" aria-hidden="true" /> : <Play className="size-4" aria-hidden="true" />}
               </button>

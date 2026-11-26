@@ -11,12 +11,15 @@ import { StackedWaveforms } from "@/components/stacked-waveforms";
 import { InteractiveTerminal } from "@/components/interactive-terminal";
 import { ProjectSpecs } from "@/components/project-specs";
 import { IntroOverlay } from "@/components/intro-overlay";
+import { SandToSilicon } from "@/components/sand-to-silicon";
+import { SkillKeycaps } from "@/components/skill-keycaps";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-x-hidden bg-[var(--background)]">
+    <div className="min-h-screen flex flex-col relative overflow-x-clip bg-[var(--background)]">
       <IntroOverlay />
       <CubeHeroAnimation />
+      <SandToSilicon />
 
       <div className="flex-1">
         {/* Interactive Terminal Section */}
@@ -166,8 +169,9 @@ export default function HomePage() {
               </h2>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl">
-              {[
+            <ScrollReveal>
+              <SkillKeycaps
+                categories={[
                 {
                   title: "Languages",
                   items: ["Python", "C++", "JavaScript", "HTML", "CSS"],
@@ -184,27 +188,9 @@ export default function HomePage() {
                   title: "AI & Retrieval",
                   items: ["Ollama", "Gemini API", "ChromaDB", "Vector Embeddings", "RAG"],
                 },
-              ].map((category, index) => (
-                <ScrollReveal key={category.title} delay={index * 0.1}>
-                  <div>
-                    <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-[var(--foreground)] mb-3">
-                      {category.title}
-                    </h3>
-                    <ul className="font-mono text-xs uppercase tracking-[0.08em]">
-                      {category.items.map((item, i) => (
-                        <li
-                          key={item}
-                          className="flex items-baseline justify-between gap-6 border-t border-white/[0.07] py-2.5"
-                        >
-                          <span className="text-[#d3d7e0]">{item}</span>
-                          <span className="text-[#8a91a0] tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+              ]}
+              />
+            </ScrollReveal>
           </div>
         </section>
 

@@ -3,8 +3,8 @@
 import { motion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "@/components/animations";
 import { getNowItems, categoryLabels, categoryOrder, getLastUpdated } from "@/content/now";
-import { Calendar, BookOpen, Lightbulb, Compass, Sparkles, CheckCircle } from "lucide-react";
-import { MagneticSphere } from "@/components/magnetic-sphere";
+import { BookOpen, Lightbulb, Compass, Sparkles, CheckCircle } from "lucide-react";
+import { MicrobotSwarm } from "@/components/microbot-swarm";
 
 const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "working-on": CheckCircle,
@@ -28,25 +28,10 @@ export default function NowPage() {
 
   return (
     <div className="min-h-screen">
-      {/* Magnetic Particle Sphere - Hero */}
-      <section className="relative py-16 px-6 md:py-24 lg:py-32 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative h-[500px] md:h-[600px] lg:h-[700px]">
-            <MagneticSphere
-              size={500}
-              particleCount={10000}
-              color="#B7BDCA"
-              backgroundColor="transparent"
-              interactive={true}
-              shape="crown"
-            />
-            {/* Subtle label */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-              <p className="font-sans text-xs text-muted-foreground/60 uppercase tracking-wider">
-                Magnetic crown — move cursor to interact
-              </p>
-            </div>
-          </div>
+      {/* Microbot swarm - hero */}
+      <section className="relative overflow-hidden px-6 pt-20 md:pt-24">
+        <div className="mx-auto max-w-7xl">
+          <MicrobotSwarm className="h-[520px] md:h-[620px] lg:h-[700px]" />
         </div>
       </section>
 

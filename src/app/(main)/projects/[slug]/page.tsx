@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ProjectAnimation } from "@/components/project-animation";
 import { ArrowLeft, ExternalLink, GitBranch } from "lucide-react";
 import { projects, getProject } from "@/content/projects";
+import { ProjectSpecs } from "@/components/project-specs";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -50,16 +51,16 @@ export default async function ProjectPage({ params }: Props) {
           </Link>
 
           <header className="mb-16">
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-              <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium">{project.year}</span>
-              <span className="px-2 py-1 bg-muted rounded-full text-xs font-medium capitalize">{project.category}</span>
-            </div>
-            <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] text-foreground text-balance mb-6">
+            <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight text-foreground text-balance mb-6">
               {project.title}
             </h1>
-            <p className="font-sans text-xl text-muted-foreground leading-relaxed max-w-3xl">
+            <p className="font-sans text-xl text-muted-foreground leading-relaxed max-w-3xl mb-10">
               {project.shortDescription}
             </p>
+            <div className="max-w-md">
+              <p className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-foreground mb-2">Specification</p>
+              <ProjectSpecs project={project} maxStack={project.tags.length} wrap className="border-t border-white/[0.07]" />
+            </div>
           </header>
 
           {(project.link || project.github) && (

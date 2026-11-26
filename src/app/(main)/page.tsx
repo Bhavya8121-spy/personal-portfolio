@@ -9,6 +9,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem, FadeIn, SlideUp } from "@/
 import { CubeHeroAnimation } from "@/components/cube-hero-animation";
 import { StackedWaveforms } from "@/components/stacked-waveforms";
 import { InteractiveTerminal } from "@/components/interactive-terminal";
+import { ProjectSpecs } from "@/components/project-specs";
 
 export default function HomePage() {
   return (
@@ -20,7 +21,7 @@ export default function HomePage() {
         <section id="home-terminal" className="scroll-mt-16 py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-16 border-y border-[var(--border)]">
           <div className="max-w-[1440px] mx-auto">
             <ScrollReveal className="mb-12 text-center">
-              <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+              <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
                 Interactive
               </span>
               <h2 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl text-[var(--foreground)] mt-2 text-balance">
@@ -43,7 +44,7 @@ export default function HomePage() {
         <section className="py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-16 border-y border-[var(--border)]">
           <div className="max-w-[1440px] mx-auto">
             <ScrollReveal className="mb-16">
-              <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+              <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
                 01 / Selected Work
               </span>
               <h2 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl text-[var(--foreground)] mt-2 text-balance">
@@ -61,30 +62,13 @@ export default function HomePage() {
                     {project.animation && (
                       <ProjectAnimation animation={project.animation} className="mb-5 rounded-lg" decorative />
                     )}
-                    <div className="mb-4">
-                      <span className="font-sans text-xs font-medium text-[var(--accent)] uppercase tracking-wider">
-                        {project.year}
-                      </span>
-                      <span className="font-sans text-xs font-medium text-[var(--muted)] ml-2 capitalize">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h3 className="font-display font-medium text-xl md:text-2xl text-[var(--foreground)] mb-3 group-hover:text-[var(--accent)] transition-colors flex-1">
+                    <h3 className="font-display font-medium text-xl md:text-2xl tracking-tight text-[var(--foreground)] mb-2 group-hover:text-[var(--accent)] transition-colors">
                       {project.title}
                     </h3>
                     <p className="font-sans text-[var(--muted)] leading-relaxed mb-6 line-clamp-3 flex-1">
                       {project.shortDescription}
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-[var(--muted)]/10 border border-[var(--border)] rounded-full font-sans text-xs font-medium text-[var(--muted)]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    <ProjectSpecs project={project} className="mb-6" />
                     <div className="pt-4 border-t border-[var(--border)] flex items-center justify-between mt-auto">
                       <span className="font-sans text-sm font-medium text-[var(--accent)]">
                         View project
@@ -129,7 +113,7 @@ export default function HomePage() {
                 <StaggerContainer staggerDelay={0.1}>
                   <StaggerItem delay={0}>
                     <FadeIn delay={0.1} className="mb-4">
-                      <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+                      <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
                         02 / Exploration
                       </span>
                     </FadeIn>
@@ -144,17 +128,10 @@ export default function HomePage() {
                   </StaggerItem>
 
                   <StaggerItem delay={2}>
-                    <SlideUp delay={0.3} distance={16} className="mb-8 max-w-lg">
-                      <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
-                        I build tools that make complex systems easier to inspect and use, from tracing service failures to searching documents with a local language model.
-                      </p>
-                    </SlideUp>
-                  </StaggerItem>
-
-                  <StaggerItem delay={3}>
-                    <SlideUp delay={0.4} distance={16} className="mb-8 max-w-lg">
-                      <p className="font-sans text-base md:text-lg text-[var(--muted)] leading-relaxed">
-                        My projects span AI agent authorization, real-time observability, and practical tools for financial analysis and course planning.
+                    <SlideUp delay={0.3} distance={16} className="mb-8 max-w-xl">
+                      <p className="font-sans text-lg md:text-xl leading-relaxed tracking-tight text-pretty">
+                        <span className="text-[var(--foreground)]">I build tools that make complex systems easier to inspect and use, from tracing service failures to searching documents with a local language model.</span>{" "}
+                        <span className="text-[#8a91a0]">My projects span AI agent authorization, real-time observability, and practical tools for financial analysis and course planning.</span>
                       </p>
                     </SlideUp>
                   </StaggerItem>
@@ -179,7 +156,7 @@ export default function HomePage() {
         <section className="py-20 md:py-28 lg:py-32 px-6 md:px-12 lg:px-16 border-y border-[var(--border)]">
           <div className="max-w-[1440px] mx-auto">
             <ScrollReveal className="mb-16">
-              <span className="font-sans text-sm font-medium text-[var(--accent)] uppercase tracking-wider">
+              <span className="font-mono text-xs font-medium text-[var(--accent)] uppercase tracking-[0.18em]">
                 03 / Experience & Skills
               </span>
               <h2 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl text-[var(--foreground)] mt-2 text-balance">
@@ -187,7 +164,7 @@ export default function HomePage() {
               </h2>
             </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 gap-x-16 gap-y-12 max-w-5xl">
               {[
                 {
                   title: "Languages",
@@ -207,15 +184,18 @@ export default function HomePage() {
                 },
               ].map((category, index) => (
                 <ScrollReveal key={category.title} delay={index * 0.1}>
-                  <div className="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 md:p-8 transition-all duration-300 hover:border-[var(--accent)]/50 hover:shadow-lg h-full">
-                    <h3 className="font-display font-medium text-xl text-[var(--foreground)] mb-4">
+                  <div>
+                    <h3 className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-[var(--foreground)] mb-3">
                       {category.title}
                     </h3>
-                    <ul className="space-y-2">
-                      {category.items.map((item) => (
-                        <li key={item} className="font-sans text-sm text-[var(--muted)] leading-relaxed flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]/30" />
-                          {item}
+                    <ul className="font-mono text-xs uppercase tracking-[0.08em]">
+                      {category.items.map((item, i) => (
+                        <li
+                          key={item}
+                          className="flex items-baseline justify-between gap-6 border-t border-white/[0.07] py-2.5"
+                        >
+                          <span className="text-[#d3d7e0]">{item}</span>
+                          <span className="text-[#8a91a0] tabular-nums">{String(i + 1).padStart(2, "0")}</span>
                         </li>
                       ))}
                     </ul>

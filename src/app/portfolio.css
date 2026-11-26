@@ -232,7 +232,3 @@ html {
 html {
   scroll-behavior: smooth;
 }
-/* The cinematic intro is skipped for returning visitors in this session and for reduced motion. */
-html[data-intro="skip"] .intro-overlay {
-  display: none;
-}

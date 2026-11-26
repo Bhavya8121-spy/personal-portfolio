@@ -50,6 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Decide before first paint whether the home-page intro plays (see IntroOverlay). */}
         <script dangerouslySetInnerHTML={{ __html: introGateScript }} />
+        {/* Inline rather than in portfolio.css: the CSS build drops this selector. */}
+        <style>{`html[data-intro="skip"] .intro-overlay{display:none!important}`}</style>
         <noscript>
           <style>{`.intro-overlay{display:none!important}`}</style>
         </noscript>

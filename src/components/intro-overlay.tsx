@@ -56,8 +56,12 @@ export function IntroOverlay() {
   }, [skip]);
 
   useEffect(() => {
-    // Skipped visitors never see the overlay: <html data-intro="skip"> hides it via CSS.
-    if (!introWillPlay()) return;
+    // Skipped visitors never see the overlay: <html data-intro="skip"> hides it via an
+    // inline style in <head>. Unmount it too, so it can't cover the page if that style is lost.
+    if (!introWillPlay()) {
+      const id = requestAnimationFrame(() => setPhase("done"));
+      return () => cancelAnimationFrame(id);
+    }
 
     try {
       sessionStorage.setItem(INTRO_SEEN_KEY, "1");
